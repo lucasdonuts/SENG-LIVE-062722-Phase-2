@@ -7,7 +7,7 @@ const Header = ({ isDarkMode, onToggleDarkMode }) => {
   return (
     <header className="navigation">
         <h1 className="branding">
-          <Link exact to="/">
+          <Link to="/">
             <span className="logo">{"//"}</span>
             Project Showcase
           </Link>

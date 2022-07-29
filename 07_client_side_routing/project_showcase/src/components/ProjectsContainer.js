@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Route, Switch } from 'react-router-dom';
 import ProjectForm from "./ProjectForm";
 import ProjectList from "./ProjectList";
 import ProjectEditForm from "./ProjectEditForm";
@@ -48,30 +49,29 @@ const ProjectsContainer = () => {
     setProjects(projects => projects.filter(p => p.id !== projectId))
   };
 
-  const renderForm = () => {
-    if (projectToEdit) {
-      return (
-        <ProjectEditForm
-          projectToEdit={projectToEdit}
-          onUpdateProject={onUpdateProject}
-        />
-      );
-    } else {
-      return <ProjectForm onAddProject={onAddProject} />;
-    }
-  };
-
   return (
-    <div>
-      {renderForm()}
-      <ProjectList
-        projects={projects}
-        onProjectEdit={onProjectEdit}
-        onProjectDelete={onProjectDelete}
-        setSelectedPhase={setSelectedPhase}
-        setSearchQuery={setSearchQuery}
-      />
-    </div>
+    <>
+      <Switch>
+        <Route path="/projects/:id/edit">
+          <ProjectEditForm
+            // projectToEdit={projectToEdit}
+            onUpdateProject={onUpdateProject}
+          />
+        </Route>
+        <Route path="/projects/new">
+          <ProjectForm onAddProject={ onAddProject } />
+        </Route>
+        <Route path="/projects">
+          <ProjectList
+            projects={projects}
+            onProjectEdit={onProjectEdit}
+            onProjectDelete={onProjectDelete}
+            setSelectedPhase={setSelectedPhase}
+            setSearchQuery={setSearchQuery}
+          />
+        </Route>
+      </Switch>
+    </>
   )
 }
 

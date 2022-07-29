@@ -19,11 +19,11 @@ const App = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/projects">
-          <ProjectsContainer />
-        </Route>
-        <Route exact path="/about">
+        <Route path="/about">
           <About />
+        </Route>
+        <Route path="/projects">
+          <ProjectsContainer />
         </Route>
       </Switch>
     </div>
